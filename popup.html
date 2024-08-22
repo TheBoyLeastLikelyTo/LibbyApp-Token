@@ -1,7 +1,8 @@
-<!-- popup.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LibbyApp Sentry Authorization Extractor</title>
   <style>
     body {
@@ -9,13 +10,21 @@
       padding: 10px;
     }
     #token {
-      word-wrap: break-word;
+      width: 100%;
+      padding: 5px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    #error {
+      color: red;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <h2>Bearer Token</h2>
-  <div id="token">Loading...</div>
+  <input type="text" id="token" readonly placeholder="Loading..." />
+  <div id="error"></div>
   <button id="refresh">Refresh Token</button>
   <script src="popup.js"></script>
 </body>

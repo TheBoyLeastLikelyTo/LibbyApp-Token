@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Function to display error messages
   function showError(message) {
-    document.getElementById('token').textContent = '';
+    document.getElementById('token').value = '';
     document.getElementById('error').textContent = message;
   }
 
@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!currentTab.url.includes("libbyapp.com")) {
       showError("Please open libbyapp.com to use this extension.");
     } else {
-      // Display the bearer token
+      // Display the bearer token in the text box
       chrome.storage.local.get('bearerToken', (data) => {
         if (data.bearerToken) {
-          document.getElementById('token').textContent = data.bearerToken;
+          document.getElementById('token').value = data.bearerToken;
           document.getElementById('error').textContent = '';
         } else {
           showError("No token found. Please sign in and try refreshing.");
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(() => {
         chrome.storage.local.get('bearerToken', (data) => {
           if (data.bearerToken) {
-            document.getElementById('token').textContent = data.bearerToken;
+            document.getElementById('token').value = data.bearerToken;
             document.getElementById('error').textContent = '';
           } else {
             showError("No token found. Please sign in and try refreshing.");
