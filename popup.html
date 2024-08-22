@@ -19,12 +19,24 @@
       color: red;
       margin-top: 10px;
     }
+    .button-container {
+      margin-top: 10px;
+    }
+    .button-container button {
+      margin-right: 5px;
+      padding: 5px 10px;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
   <h2>Bearer Token</h2>
   <input type="text" id="token" readonly placeholder="Loading..." />
   <div id="error"></div>
+  <div class="button-container">
+    <button id="select">Select All</button>
+    <button id="copy">Copy to Clipboard</button>
+  </div>
   <button id="refresh">Refresh Token</button>
   <script src="popup.js"></script>
 </body>
