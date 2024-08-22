@@ -3,10 +3,12 @@
 document.addEventListener('DOMContentLoaded', function () {
   const tokenInput = document.getElementById('token');
   const errorDiv = document.getElementById('error');
+  const buttonContainer = document.getElementById('button-container');
 
   // Function to display error messages
   function showError(message) {
     tokenInput.value = '';
+    buttonContainer.style.display = 'none'; // Hide buttons
     errorDiv.textContent = message;
   }
 
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (data.bearerToken) {
           tokenInput.value = data.bearerToken;
           errorDiv.textContent = '';
+          buttonContainer.style.display = 'block'; // Show buttons
         } else {
           showError("No token found. Please sign in and try refreshing.");
         }
@@ -37,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
           if (data.bearerToken) {
             tokenInput.value = data.bearerToken;
             errorDiv.textContent = '';
+            buttonContainer.style.display = 'block'; // Show buttons
           } else {
             showError("No token found. Please sign in and try refreshing.");
           }
