@@ -1,0 +1,39 @@
+body {
+	font-family: Arial, sans-serif;
+	padding: 10px;
+	width: 300px; /* Fixed width */
+	height: 200px; /* Fixed height */
+	box-sizing: border-box;
+	overflow: hidden; /* Hide overflow content */
+}
+
+#token {
+	width: 100%;
+	padding: 5px;
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+#error {
+	color: red;
+	margin-top: 10px;
+	overflow-y: auto; /* Scroll if error message is too long */
+}
+
+.button-container {
+	margin-top: 10px;
+	display: none; /* Initially hide the buttons */
+}
+
+.button-container button {
+	margin-right: 5px;
+	padding: 5px 10px;
+	font-size: 14px;
+}
+
+#refresh {
+	margin-top: 10px;
+	width: 100%;
+	padding: 5px 10px;
+	font-size: 14px;
+}

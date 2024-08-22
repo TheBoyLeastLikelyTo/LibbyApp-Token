@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LibbyApp Sentry Authorization Extractor</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h2>Bearer Token</h2>
+  <input type="text" id="token" readonly placeholder="Loading..." />
+  <div id="error"></div>
+  <div class="button-container" id="button-container">
+    <button id="select">Select All</button>
+    <button id="copy">Copy to Clipboard</button>
+  </div>
+  <button id="refresh">Refresh Token</button>
+  <script src="popup.js"></script>
+</body>
+</html>
