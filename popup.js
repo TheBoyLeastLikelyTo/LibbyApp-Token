@@ -9,25 +9,28 @@ document.addEventListener('DOMContentLoaded', function () {
   const emptyToken = '';
   const reloadTimer = 1000; // Increase for slower connections
 
+  // Polyfill for browser compatibility
+  if (typeof browser === "undefined") {
+    var browser = chrome;
+  }
+
   // Change the button hidden/shown state
   function containerChangeButtonState(show) {
-    if (show == false) {
+    if (show === false) {
       buttonContainer.style.display = containerHidden; // Hide buttons
-    }
-    else {
+    } else {
       buttonContainer.style.display = containerShown; // Show buttons
     }
   }
 
   // Function to display error messages
   function showMessage(message, type) {
-    
-    if (type == 'error') {
+    if (type === 'error') {
       messageDiv.style.color = 'red';
     } else {
       messageDiv.style.color = 'black';
     }
-    
+
     tokenInput.value = emptyToken;
     messageDiv.textContent = message;
   }
@@ -43,27 +46,26 @@ document.addEventListener('DOMContentLoaded', function () {
       containerChangeButtonState(false);
     }
   }
-  
+
   // Check if the user is on libbyapp.com
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const currentTab = tabs[0];
     if (!currentTab.url.includes("libbyapp.com")) {
       showMessage("Please open libbyapp.com to use this extension.", "error");
       containerChangeButtonState(false);
     } else {
       // Display the bearer token in the text box
-      chrome.storage.local.get('bearerToken', (data) => showToken(data));
+      browser.storage.local.get('bearerToken').then(showToken);
     }
   });
 
   // Refresh the token when the button is clicked
   document.getElementById('refresh').addEventListener('click', () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.reload(tabs[0].id);
+    browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      browser.tabs.reload(tabs[0].id);
       showMessage("Refreshing Token!");
-      //containerChangeButtonState(false);
       setTimeout(() => {
-        chrome.storage.local.get('bearerToken', (data) => showToken(data));
+        browser.storage.local.get('bearerToken').then(showToken);
       }, reloadTimer); // wait for the reload to complete
     });
   });
@@ -75,8 +77,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Copy the text in the text box to the clipboard when the "Copy to Clipboard" button is clicked
   document.getElementById('copy').addEventListener('click', () => {
-    tokenInput.select();
-    document.execCommand('copy');
-    alert('Bearer token copied to clipboard!');
+    navigator.clipboard.writeText(tokenInput.value).then(() => {
+      showMessage('Token copied to clipboard');
+    }).catch((err) => {
+      showMessage('Token could not be copied', 'error');
+      console.error('Could not copy text: ', err);
+    });
   });
+
 });

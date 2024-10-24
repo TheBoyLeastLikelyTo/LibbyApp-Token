@@ -1,11 +1,17 @@
 // background.js
 
-chrome.webRequest.onBeforeSendHeaders.addListener(
+// Polyfill for browser compatibility
+if (typeof browser === "undefined") {
+  var browser = chrome;
+}
+
+// Listen for web requests and capture authorization headers
+browser.webRequest.onBeforeSendHeaders.addListener(
   (details) => {
     for (let header of details.requestHeaders) {
       if (header.name.toLowerCase() === "authorization" && header.value.startsWith("Bearer")) {
-        // Save the bearer token to chrome storage
-        chrome.storage.local.set({ bearerToken: header.value }, () => {
+        // Save the bearer token to browser storage
+        browser.storage.local.set({ bearerToken: header.value }, () => {
           console.log('Bearer token saved:', header.value);
         });
       }
@@ -16,9 +22,11 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   ["requestHeaders"]
 );
 
-// Reload the page when the extension is first installed
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.reload(tabs[0].id);
+// Reload the active tab when the extension is first installed
+browser.runtime.onInstalled.addListener(() => {
+  browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0]) {
+      browser.tabs.reload(tabs[0].id);
+    }
   });
 });
