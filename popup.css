@@ -1,39 +1,54 @@
+/* popup.css */
+
 body {
-	font-family: Arial, sans-serif;
-	padding: 10px;
-	width: 300px; /* Fixed width */
-	height: 200px; /* Fixed height */
-	box-sizing: border-box;
-	overflow: hidden; /* Hide overflow content */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    width: 300px; /* Fixed width, flexible height */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    overflow: hidden; /* Hide overflow content */
+}
+
+button {
+    padding: 5px 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+hr {
+  display: block;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.container-info {
+    display: none; /* Initially hide the buttons */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.container-normal {
+    width: 100%;
 }
 
 #token {
-	width: 100%;
-	padding: 5px;
-	margin-top: 10px;
-	font-size: 14px;
+    font-family: "Lucida Console", monospace;
+    width: 100%;
+    padding: 5px 10px;
 }
 
-#error {
-	color: red;
-	margin-top: 10px;
-	overflow-y: auto; /* Scroll if error message is too long */
-}
-
-.button-container {
-	margin-top: 10px;
-	display: none; /* Initially hide the buttons */
-}
-
-.button-container button {
-	margin-right: 5px;
-	padding: 5px 10px;
-	font-size: 14px;
-}
-
-#refresh {
-	margin-top: 10px;
-	width: 100%;
-	padding: 5px 10px;
-	font-size: 14px;
+#message {
+    overflow-y: auto; /* Scroll if error message is too long */
 }

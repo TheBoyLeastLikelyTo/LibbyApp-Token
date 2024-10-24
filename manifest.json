@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "LibbyApp Sentry Authorization Extractor",
-  "version": "1.1",
+  "name": "Bearer Token Extractor",
+  "version": "1.2",
   "permissions": [
     "activeTab",
     "webRequest",

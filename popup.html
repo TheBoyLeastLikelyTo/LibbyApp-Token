@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LibbyApp Sentry Authorization Extractor</title>
-  <link rel="stylesheet" href="popup.css">
-</head>
-<body>
-  <h2>Bearer Token</h2>
-  <input type="text" id="token" readonly placeholder="Loading..." />
-  <div id="error"></div>
-  <div class="button-container" id="button-container">
-    <button id="select">Select All</button>
-    <button id="copy">Copy to Clipboard</button>
-  </div>
-  <button id="refresh">Refresh Token</button>
-  <script src="popup.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bearer Token Extractor</title>
+    <link rel="stylesheet" href="popup.css">
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <h2 class="title">Bearer Token Extractor</h2>
+    <hr>
+    <div class="container-info" id="container-info">
+      <input type="text" id="token" readonly placeholder="Unavailable"></input>
+      <button id="select">Select All</button>
+      <button id="copy">Copy to Clipboard</button>
+      <hr>
+    </div>
+    <div class="container-normal" id="container-normal">
+      <div id="message"></div>
+      <button id="refresh">Refresh Token</button>
+      <hr>
+    </div>
+  </body>
 </html>
