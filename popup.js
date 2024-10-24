@@ -47,18 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Check if the user is on libbyapp.com
-  browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    const currentTab = tabs[0];
-    if (!currentTab.url.includes("libbyapp.com")) {
-      showMessage("Please open libbyapp.com to use this extension.", "error");
-      containerChangeButtonState(false);
-    } else {
-      // Display the bearer token in the text box
-      browser.storage.local.get('bearerToken').then(showToken);
-    }
-  });
-
   // Refresh the token when the button is clicked
   document.getElementById('refresh').addEventListener('click', () => {
     browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
